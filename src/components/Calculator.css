@@ -1,0 +1,45 @@
+/*Grid*/
+
+.calculadora {
+    margin-top:5%;
+    display: grid;
+    justify-content: center;
+    align-items: center !important;
+    
+  }
+  .display {
+   padding: 20px;
+   background: #121212;
+   border-radius: 10px 10px 0px 0px;
+  
+  }
+  .display input {
+    background-color: #7e6e75;
+    width: 90%;
+    height: 60px;
+    font-size: 24px;
+        
+  }
+  button {
+    background-color: #121212;
+    padding: 16px;
+    border-radius: 12px;
+    cursor: pointer;
+    font-size: 24px;
+  }
+  .buttons {
+    display: grid;
+    grid-template-columns: repeat(6,2fr);
+    grid-template-rows: repeat(6,2fr);
+    gap: 10px 10px;
+    padding:15px;
+    box-shadow: 10px 10px 5px -4px rgba(0, 0, 0, 0.603);
+    background-color: #243A73;  
+  }
+  button.igual {
+    grid-column: 6;
+    grid-row: 5/7;
+  }
+  button.delete {
+    background-color: #A5BECC;
+  }
