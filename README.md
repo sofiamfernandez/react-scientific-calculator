@@ -5,6 +5,8 @@
 Esta app fue íntegramente creada por [Sofía Fernandez ](https://www.sofiamfernandez.com) para el curso [React de Codo a Codo] y su lógica se basa en el uso de React Hooks.
 Su estructura inicial fue creada con el comando `npx create-react-app`. 
 
+Mira acá el [Live Demo](https://calculadora-cientifica-bysophieferdz.netlify.app)
+
 ## Para ejecutar la app
 
 Para iniciar la aplicación, debes ejecutar el comando `npm start` en el terminal. Si trabajas con Visual Studio Code, puedes abrir el terminal con el atajo de teclado `ctrl + ñ` si tu teclado está en español y con ``ctrl + ` `` si tu teclado está en inglés.
