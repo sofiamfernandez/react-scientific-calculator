@@ -1,4 +1,4 @@
-# :calculator: Calculadora Científica by React Hooks
+# :atom_symbol: Calculadora Científica by React Hooks
 
 ¡Hola! Esta es una aplicación desarrollada con React, una calculadora reactiva científica que realiza las cuatro operaciones aritméticas básicas (suma, resta, multiplicación y división), funciones trigonométricas (seno, coseno, tangente), calcula logaritmo natural y de distintas bases, además de sacar raíces, potencias y factoriales. 
 
