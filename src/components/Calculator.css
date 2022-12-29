@@ -26,6 +26,7 @@
     border-radius: 12px;
     cursor: pointer;
     font-size: 24px;
+    transition: all 0.2s;
   }
   .buttons {
     display: grid;
@@ -41,5 +42,8 @@
     grid-row: 5/7;
   }
   button.delete {
-    background-color: #A5BECC;
+    background-color: #66a7cc;
+  }
+  button:hover {
+    border-color: rgb(255, 255, 255);
   }

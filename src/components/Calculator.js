@@ -2,16 +2,23 @@ import { useState, useRef, useEffect } from 'react';
 
 import { Button } from 'react-bootstrap';
 
-import { pi, sqrt, pow, cbrt, log, exp, evaluate, cos, sin, tan } from 'mathjs';
+import { pi, sqrt, pow, cbrt, log, exp, evaluate, cos, sin, tan, log1p } from 'mathjs';
 import './Calculator.css'
 
 export const Calculator = () => {
   const [result, setResult] = useState('');
+  
+
   const inputRef = useRef(null);
+
+
 
   useEffect(() => inputRef.current.focus());
 
+  
+
   function handleClick(e){
+    e.preventDefault()
     setResult(result.concat(e.target.name));
   }
   function backspace(){
@@ -27,10 +34,12 @@ export const Calculator = () => {
   function raizCubica(){
     setResult(cbrt(result).toString());
   }
-  function raizN(){
-    
-    
-  }
+
+  //Raíz enésima, siguiendo la lógica matemática la raíz se puede calcular con una potencia inversa, pero no me salió con la librería que usé :()
+  // function raizN(){
+  //   setResult(Math.evaluate([result , pow(setResult, 1/ result)]).toString());
+ 
+  // }
  //Potencias
   function potencia(){
     setResult(pow(result, 2).toString());
@@ -69,13 +78,16 @@ export const Calculator = () => {
   function tangente(){
     setResult(tan(result).toString());
   }
-//Esta mal
-  function porcentaje(){
-    setResult(Math.evaluate(result * 100, setResult / result) ).toString();
-  }
+ 
+
  function factorialX(){
   setResult(Math.factorial(result).toString());
  }
+
+ function logE(){
+  setResult(log1p(result).toString());
+ }
+
 
   function calculate(){
     try {
@@ -95,47 +107,51 @@ export const Calculator = () => {
             </div>
             <div className="buttons">
 
-                <Button type="button" id='clear' onClick={clear} variant='dark' className="btn btn-dark delete">AC</Button>
-                <Button type="button" id='backspace' onClick={backspace} className="btn btn-dark delete">C</Button>
+                <Button  id='clear' onClick={clear} variant='dark' className="btn btn-dark delete">AC</Button>
+                <Button  id='backspace' onClick={backspace} className="btn btn-dark delete">C</Button>
                 
-                <Button type="button" className="btn btn-dark">( )</Button>
-                <Button type="button" name='x²' onClick={potencia} className="btn btn-dark">x²</Button>
-                <Button type="button" name='²√' onClick={raiz} className="btn btn-dark">²√</Button>
-                <Button type="button" name='√'  onClick={handleClick} onChange={raizN} className="btn btn-dark">ⁿ√</Button>
+                <Button  name='(' onClick={handleClick}  className="btn dark">( </Button>
+                <Button  name=')' onClick={handleClick} className="btn btn-dark"> )</Button>
+                <Button  name='x²' onClick={potencia} className="btn btn-dark">x²</Button>
+                <Button  name='²√' onClick={raiz} className="btn btn-dark">²√</Button>
         
-                <Button type="button" name='seno' onClick={seno} className="btn btn-dark">sin</Button>
-                <Button type="button" name='coseno' onClick={coseno} className="btn btn-dark">cos</Button>
-                <Button type="button" name='tangente' onClick={tangente} className="btn btn-dark">tg</Button>
-                <Button type="button" name='x³' onClick={potenciaCubica} className="btn btn-dark">x³</Button>
-                <Button type="button" name='^' onClick={handleClick} onChange={potenciaN} className="btn btn-dark">xⁿ</Button>
-                <Button type="button" name='³√' onClick={raizCubica} lassName="btn btn-dark">³√</Button>
+                <Button  name='seno' onClick={seno} className="btn btn-dark">sin</Button>
+                <Button  name='coseno' onClick={coseno} className="btn btn-dark">cos</Button>
+                <Button  name='tangente' onClick={tangente} className="btn btn-dark">tg</Button>
+                <Button  name='x³' onClick={potenciaCubica} className="btn btn-dark">x³</Button>
+                <Button  name='^' onClick={handleClick} onChange={potenciaN} className="btn btn-dark">xⁿ</Button>
+                <Button  name='³√' onClick={raizCubica} lassName="btn btn-dark">³√</Button>
 
-                <Button type="button"  name='7' onClick={handleClick} className="number btn btn-dark">7</Button>
-                <Button type="button"  name='8' onClick={handleClick} className="number btn btn-dark">8</Button>
-                <Button type="button"  name='9' onClick={handleClick} className="number btn btn-dark">9</Button>
-                <Button type="button"  name='/' onClick={handleClick} className="operator btn btn-dark">/</Button>
-                <Button type="button"  name='%' onClick={handleClick} onChange={porcentaje}  className="operator btn btn-dark">%</Button>
-                <Button type="button"  name='ln(' onClick={logN} className="btn btn-dark">ln</Button>
+                <Button   name='7' onClick={handleClick} className="number btn btn-dark">7</Button>
+                <Button   name='8' onClick={handleClick} className="number btn btn-dark">8</Button>
+                <Button   name='9' onClick={handleClick} className="number btn btn-dark">9</Button>
+                <Button   name='/' onClick={handleClick} className="operator btn btn-dark">/</Button>
+                <Button  name='!' onClick={handleClick} onChange={factorialX} className="btn btn-dark">x!</Button>
+                
+                <Button   name='ln(' onClick={logN} className="btn btn-dark">ln</Button>
 
-                <Button type="button"  name='4' onClick={handleClick} className="number btn btn-dark">4</Button>
-                <Button type="button"  name='5' onClick={handleClick} className="number btn btn-dark">5</Button>
-                <Button type="button"  name='6' onClick={handleClick} className="number btn btn-dark">6</Button>
-                <Button type="button"  name='*' onClick={handleClick} className="operator btn btn-dark">*</Button>
-                <Button type="button"  name='log(' onClick={logDiez} className="btn btn-dark">log</Button>
-                <Button type="button"  name='e' onClick={notacionExp} className="btn btn-dark">e</Button>
+                <Button   name='4' onClick={handleClick} className="number btn btn-dark">4</Button>
+                <Button   name='5' onClick={handleClick} className="number btn btn-dark">5</Button>
+                <Button   name='6' onClick={handleClick} className="number btn btn-dark">6</Button>
+                <Button   name='*' onClick={handleClick} className="operator btn btn-dark">*</Button>
+                <Button   name='log(' onClick={logDiez} className="btn btn-dark">log</Button>
+                <Button   name='e' onClick={notacionExp} className="btn btn-dark">e</Button>
 
-                <Button type="button" name='1' onClick={handleClick} className="number btn btn-dark">1</Button>
-                <Button type="button" name='2' onClick={handleClick} className="number btn btn-dark">2</Button>
-                <Button type="button" name='3' onClick={handleClick} className="number btn btn-dark">3</Button>
-                <Button type="button" name='-' onClick={handleClick} className="operator btn btn-dark">-</Button>
-                <Button type="button" name='!' onClick={handleClick} onChange={factorialX} className="btn btn-dark">x!</Button>
-                <Button type="button" id='result' onClick={calculate} className="btn btn-primary igual delete">=</Button>
+                <Button  name='1' onClick={handleClick} className="number btn btn-dark">1</Button>
+                <Button  name='2' onClick={handleClick} className="number btn btn-dark">2</Button>
+                <Button name='3' onClick={handleClick} className="number btn btn-dark">3</Button>
+                <Button  name='-' onClick={handleClick} className="operator btn btn-dark">-</Button>
+                <Button  name='log1p' onClick={logE} className="btn btn-dark">logE</Button>
+               
 
-                <Button type="button" name='.' onClick={handleClick} className="btn btn-dark">.</Button>
-                <Button type="button" name='0' onClick={handleClick} className="number btn btn-dark">0</Button>
-                <Button type="button" name='π'onClick={numeroPi} className="btn btn-dark">π</Button>
-                <Button type="button" name='+' onClick={handleClick} className="operator btn btn-dark">+</Button>
-                <Button type="button" className="btn btn-dark">MR</Button>
+
+                <Button  id='result' onClick={calculate} className="btn btn-primary igual delete">=</Button>
+
+                <Button  name='.' onClick={handleClick} className="btn btn-dark">.</Button>
+                <Button  name='0' onClick={handleClick} className="number btn btn-dark">0</Button>
+                <Button  name='π' onClick={numeroPi} className="btn btn-dark">π</Button>
+                <Button  name='+' onClick={handleClick} className="operator btn btn-dark">+</Button>
+                <Button  name='%' onClick={handleClick} className="operator btn btn-dark">%</Button>
             
 
             </div>
